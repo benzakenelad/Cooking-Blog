@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "NotFoundInSearch";
+}
+<br />
+<br />
+
+<h2> @ViewBag.Massage </h2>
+<br />
+@using (Html.BeginForm("SearchTitle", "Blog"))
+{
+    @Html.AntiForgeryToken()
+    <div id="respond">
+        <form action="#" method="post">
+            @Html.TextBox("str")
+            <!-- <input type="submit" value="submit" />
+             <input id="input1" type="text" name="search" placeholder="Search.."> -->
+            <button type="submit" class="btn btn-info btn-lg">Search</button>
+        </form>
+
+    </div>
+}

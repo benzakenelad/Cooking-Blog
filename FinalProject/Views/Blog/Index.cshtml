@@ -1,0 +1,96 @@
+﻿@model IEnumerable<FinalProject.Models.Recipe>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm("SearchTitle", "Blog"))
+{
+    @Html.AntiForgeryToken()
+    <div id="respond">
+        <form action="#" method="post">
+            @Html.TextBox("str")
+            <!-- <input type="submit" value="submit" />
+             <input id="input1" type="text" name="search" placeholder="Search.."> -->
+            <button type="submit" class="btn btn-info btn-lg">Search</button>
+        </form>
+
+    </div>
+}
+<p id="per"></p>
+<table class="table">
+    <div id="mainContent">
+        @foreach (var item in Model)
+        {
+            <section>
+                <article class="blogPost">
+                    <header>
+                        <h2>@item.Title</h2>
+                        <p>Posted on <a>@item.Date</a> by <a>@item.Author</a></p>
+                    </header>
+                    <div>
+                        <p>@item.RecipeContent</p>
+                        <img src="@item.Picute" style="width:250px;height:250px;" /><br />
+                        <video width="220" height="250" controls="controls">
+                            <source src="@item.Video" />
+                        </video><br />
+                    </div>
+                </article>
+            </section>
+            <section id="@item.RecipeID">
+                <h3>Comments</h3>
+                @foreach (var comment in item.Comments)
+                {
+                    <div>
+                        <article id="comments">
+                            <header>
+                                <h4>Comment Title: </h4>
+                                <h5>@comment.Title</h5>
+                                <p id="details">
+                                    By: <a>@comment.Author</a> <br />
+                                    Content: <a>@comment.CommentContent</a><br>
+                                </p>
+                            </header>
+
+
+                        </article>
+                    </div>
+
+
+                }
+            </section>
+
+            using (Html.BeginForm("AddComment", "Blog"))
+            {
+                @Html.AntiForgeryToken()
+                <div id="respond">
+                    <h3>Post a comment</h3>
+                    <form action="#" method="post" id="commentform">
+                        @Html.Hidden("RecipeID", item.RecipeID)
+                        <p>
+                            <label for="Title" class="required">Title</label>
+                            <input name="Title" id="Title" type="text" required />
+                        </p>
+                        <p>
+                            <label for="Author" class="required">Author</label>
+                            <input name="Author" id="Author" type="text" required />
+                        </p>
+                        <p>
+                            <label for="CommentContent">Comment</label>
+                            <textarea name="CommentContent" id="CommentContent" required></textarea>
+                        </p>
+                        <p><input type="submit" value="Post Comment" /></p>
+                    </form>
+                </div>
+            }
+        }
+    </div>
+
+</table>

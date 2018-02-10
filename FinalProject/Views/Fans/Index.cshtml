@@ -1,0 +1,74 @@
+﻿@model IEnumerable<FinalProject.Models.Fan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- here is the search form-->
+@using (Html.BeginForm("Search", "Fans"))
+{
+    @Html.AntiForgeryToken()
+    <div id="respond">
+        <h3>Search fan</h3>
+        <form action="#" method="post" id="commentform">
+            <p>
+                <label for="FirstName" class="required">First Name</label>
+                <input name="FirstName" id="FirstName" type="text" required />
+            </p>
+            <p>
+                <label for="LastName" class="required">Last Name</label>
+                <input name="LastName" id="LastName" type="text" required />
+            </p>
+            <p>
+                <label for="Seniority">Seniority</label>
+                <input name="Seniority" id="Seniority" type="number" required>
+            </p>
+            <p><input type="submit" value="Search" /></p>
+        </form>
+    </div>
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seniority)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seniority)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FanID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FanID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FanID })
+        </td>
+    </tr>
+}
+
+</table>

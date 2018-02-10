@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Statistics : </h2><br />
+
+<h3>Those are the recipes authors who commented to themselves</h3><br />
+
+@Html.Raw(ViewBag.Authors) 
+
+<br /><br /><br />
+
+<h3>List of the responses amount for each author comments</h3><br />
+@Html.Raw(ViewBag.CommentsAuthors)
+
+<br /><br /><br />
+
+<h3>Those are the recipes title who equals to there comments</h3><br />
+
+@Html.Raw(ViewBag.Titles)
+
+<br /><br /><br />

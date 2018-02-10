@@ -1,0 +1,53 @@
+﻿
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function (){
+        $("form").submit(function () {
+            var Title = $("Title");
+            var Author = $("Author");
+            var RecipeContent = $("RecipeContent");
+            if (Title == null) {
+                alert("Title must be filled out");
+                return false;
+            }
+            if (Author == null) {
+                alert("Author must be filled out");
+                return false;
+            }
+            if (RecipeContent == null) {
+                alert("Recipe content must be filled out");
+                return false;
+            }
+        })
+    });
+
+
+</script>
+<!-- here is the search form-->
+@using (Html.BeginForm("SearchRecipe", "Blog"))
+{
+    @Html.AntiForgeryToken()
+    <div id="respond">
+        <h3>Search recipe</h3>
+        <form action="#" method="post" id="commentform">
+            <p>
+                <label for="Title" class="required">Title</label>
+                <input name="Title" id="Title" type="text" required />
+            </p>
+            <p>
+                <label for="Author" class="required">Author</label>
+                <input name="Author" id="Author" type="text" required />
+            </p>
+            <p>
+                <label for="RecipeContent">Recipe Content</label>
+                <input name="RecipeContent" id="RecipeContent" type="text" required>
+            </p>
+            <p><input type="submit" value="Search"/></p>
+        </form>
+    </div>
+}
